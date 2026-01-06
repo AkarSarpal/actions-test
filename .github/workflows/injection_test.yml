@@ -1,4 +1,4 @@
-name: Injection Test
+name: Injection Test (Fixed)
 
 on:
   issues:
@@ -7,8 +7,9 @@ on:
 jobs:
   issue-echo:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Echo issue title (vulnerable)
+      - name: Echo issue title (safe)
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
-          echo "New issue title is: ${{ github.event.issue.title }}"
+          printf 'New issue title is: %s\n' "$ISSUE_TITLE"
