@@ -1,0 +1,21 @@
+name: Secret File Guard
+
+on:
+  push:
+
+jobs:
+  check-for-passwords:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fail if passwords.txt exists
+        run: |
+          if [ -f passwords.txt ]; then
+            echo "❌ passwords.txt detected. Failing workflow."
+            exit 1
+          else
+            echo "✅ No passwords.txt file found."
+          fi
