@@ -10,4 +10,5 @@ jobs:
 
     steps:
       - name: Echo issue title (vulnerable)
-        run: echo "New issue title is: ${{ github.event.issue.title }}"
+        run: |
+          echo "New issue title is: ${{ github.event.issue.title }}"
